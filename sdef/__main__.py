@@ -81,11 +81,11 @@ def main():
             cmds = [c for s in d.suites for c in s.commands]
             sys.stdout.write(format_command_list(cmds))
             return
-        cmd = d.find_command(args.name)
+        cmd, suite_name = d.find_command(args.name)
         if not cmd:
             sys.stderr.write("Command '%s' not found.\n" % args.name)
             sys.exit(1)
-        sys.stdout.write(format_command(cmd))
+        sys.stdout.write(format_command(cmd, suite_name))
         return
 
     if args.scope == "class":
@@ -93,11 +93,11 @@ def main():
             classes = [c for s in d.suites for c in s.classes]
             sys.stdout.write(format_class_list(classes))
             return
-        cls = d.find_class(args.name)
+        cls, suite_name = d.find_class(args.name)
         if not cls:
             sys.stderr.write("Class '%s' not found.\n" % args.name)
             sys.exit(1)
-        sys.stdout.write(format_class(cls))
+        sys.stdout.write(format_class(cls, suite_name))
         return
 
     if args.scope in ("enum", "enumeration"):
@@ -105,11 +105,11 @@ def main():
             enums = [e for s in d.suites for e in s.enumerations]
             sys.stdout.write(format_enumeration_list(enums))
             return
-        enum = d.find_enumeration(args.name)
+        enum, suite_name = d.find_enumeration(args.name)
         if not enum:
             sys.stderr.write("Enumeration '%s' not found.\n" % args.name)
             sys.exit(1)
-        sys.stdout.write(format_enumeration(enum))
+        sys.stdout.write(format_enumeration(enum, suite_name))
         return
 
     # Otherwise, scope is a suite name

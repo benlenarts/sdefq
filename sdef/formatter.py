@@ -62,10 +62,12 @@ def format_suite(suite: Suite) -> str:
     return "\n".join(lines).rstrip() + "\n"
 
 
-def format_command(cmd: Command) -> str:
+def format_command(cmd: Command, suite_name: str = "") -> str:
     """Format a single command with full detail."""
     lines = []  # type: List[str]
     lines.append(cmd.name)
+    if suite_name:
+        lines.append("  Suite: %s" % suite_name)
     if cmd.description:
         lines.append("  %s" % cmd.description)
 
@@ -94,13 +96,15 @@ def format_command(cmd: Command) -> str:
     return "\n".join(lines) + "\n"
 
 
-def format_class(cls: Class) -> str:
+def format_class(cls: Class, suite_name: str = "") -> str:
     """Format a single class with full detail."""
     lines = []  # type: List[str]
     label = cls.name
     if cls.is_extension:
         label = "%s (class extension)" % cls.name
     lines.append(label)
+    if suite_name:
+        lines.append("  Suite: %s" % suite_name)
     if cls.description:
         lines.append("  %s" % cls.description)
     if cls.inherits:
@@ -126,10 +130,12 @@ def format_class(cls: Class) -> str:
     return "\n".join(lines) + "\n"
 
 
-def format_enumeration(enum: Enumeration) -> str:
+def format_enumeration(enum: Enumeration, suite_name: str = "") -> str:
     """Format a single enumeration with all values."""
     lines = []  # type: List[str]
     lines.append(enum.name)
+    if suite_name:
+        lines.append("  Suite: %s" % suite_name)
     for v in enum.values:
         desc = ""
         if v.description:
