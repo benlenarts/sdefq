@@ -7,8 +7,11 @@ import sdef
 from sdef.formatter import (
     format_app_list,
     format_class,
+    format_class_list,
     format_command,
+    format_command_list,
     format_enumeration,
+    format_enumeration_list,
     format_index,
     format_search_results,
     format_suite,
@@ -75,8 +78,9 @@ def main():
     # Scope is "command", "class", or "enum" → lookup by name
     if args.scope in ("command", "cmd"):
         if not args.name:
-            sys.stderr.write("Error: specify a command name.\n")
-            sys.exit(1)
+            cmds = [c for s in d.suites for c in s.commands]
+            sys.stdout.write(format_command_list(cmds))
+            return
         cmd = d.find_command(args.name)
         if not cmd:
             sys.stderr.write("Command '%s' not found.\n" % args.name)
@@ -86,8 +90,9 @@ def main():
 
     if args.scope == "class":
         if not args.name:
-            sys.stderr.write("Error: specify a class name.\n")
-            sys.exit(1)
+            classes = [c for s in d.suites for c in s.classes]
+            sys.stdout.write(format_class_list(classes))
+            return
         cls = d.find_class(args.name)
         if not cls:
             sys.stderr.write("Class '%s' not found.\n" % args.name)
@@ -97,8 +102,9 @@ def main():
 
     if args.scope in ("enum", "enumeration"):
         if not args.name:
-            sys.stderr.write("Error: specify an enumeration name.\n")
-            sys.exit(1)
+            enums = [e for s in d.suites for e in s.enumerations]
+            sys.stdout.write(format_enumeration_list(enums))
+            return
         enum = d.find_enumeration(args.name)
         if not enum:
             sys.stderr.write("Enumeration '%s' not found.\n" % args.name)
