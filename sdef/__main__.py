@@ -1,6 +1,7 @@
 """CLI entry point for sdefq. Run with: python -m sdef"""
 
 import argparse
+import os
 import pkgutil
 import sys
 
@@ -33,6 +34,10 @@ def main():
         help="Print the Claude Code skill file to stdout.",
     )
     parser.add_argument(
+        "--install-skill-into", metavar="DIR",
+        help="Install the skill file to DIR/sdefq/SKILL.md.",
+    )
+    parser.add_argument(
         "app", nargs="?",
         help="App name (e.g. Safari) or path (/Applications/Safari.app/).",
     )
@@ -50,6 +55,16 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if args.install_skill_into:
+        data = pkgutil.get_data("sdef", "skill.md")
+        dest_dir = os.path.join(os.path.expanduser(args.install_skill_into), "sdefq")
+        os.makedirs(dest_dir, exist_ok=True)
+        dest = os.path.join(dest_dir, "SKILL.md")
+        with open(dest, "wb") as f:
+            f.write(data)
+        sys.stderr.write("Installed %s\n" % dest)
+        return
 
     if args.skill:
         data = pkgutil.get_data("sdef", "skill.md")

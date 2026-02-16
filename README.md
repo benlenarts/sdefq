@@ -30,6 +30,16 @@ sdefq Keynote enum "export format"
 sdefq Safari --search JavaScript
 ```
 
+### Claude Code skill
+
+```bash
+# Install as a Claude Code skill
+sdefq --install-skill-into ~/.claude/skills
+
+# Or print to stdout
+sdefq --skill
+```
+
 Run directly with `bin/sdefq` or `python3 -m sdef`.
 
 ## Python API
