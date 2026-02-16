@@ -152,6 +152,43 @@ def format_search_results(results: List[dict]) -> str:
     return "\n".join(lines) + "\n"
 
 
+def format_command_list(commands: List[Command]) -> str:
+    """Format a list of all commands with brief descriptions."""
+    if not commands:
+        return "No commands found.\n"
+    lines = []  # type: List[str]
+    for cmd in commands:
+        desc = ""
+        if cmd.description:
+            desc = " — %s" % cmd.description
+        lines.append("  %s%s" % (cmd.name, desc))
+    return "\n".join(lines) + "\n"
+
+
+def format_class_list(classes: List[Class]) -> str:
+    """Format a list of all classes with brief descriptions."""
+    if not classes:
+        return "No classes found.\n"
+    lines = []  # type: List[str]
+    for cls in classes:
+        desc = ""
+        if cls.description:
+            desc = " — %s" % cls.description
+        lines.append("  %s%s" % (cls.name, desc))
+    return "\n".join(lines) + "\n"
+
+
+def format_enumeration_list(enums: List[Enumeration]) -> str:
+    """Format a list of all enumerations."""
+    if not enums:
+        return "No enumerations found.\n"
+    lines = []  # type: List[str]
+    for enum in enums:
+        val_names = ", ".join(v.name for v in enum.values)
+        lines.append("  %s: %s" % (enum.name, val_names))
+    return "\n".join(lines) + "\n"
+
+
 def format_app_list(apps: List[tuple]) -> str:
     """Format the list of scriptable apps."""
     if not apps:
