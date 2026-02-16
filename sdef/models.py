@@ -81,32 +81,35 @@ class Dictionary:
     app_path: str
     suites: List[Suite] = field(default_factory=list)
 
-    def find_command(self, name: str) -> Optional[Command]:
-        """Find a command by name across all suites (case-insensitive)."""
+    def find_command(self, name: str) -> tuple:
+        """Find a command by name across all suites (case-insensitive).
+        Returns (Command, suite_name) or (None, None)."""
         q = name.lower()
         for suite in self.suites:
             for cmd in suite.commands:
                 if cmd.name.lower() == q:
-                    return cmd
-        return None
+                    return cmd, suite.name
+        return None, None
 
-    def find_class(self, name: str) -> Optional[Class]:
-        """Find a class by name across all suites (case-insensitive)."""
+    def find_class(self, name: str) -> tuple:
+        """Find a class by name across all suites (case-insensitive).
+        Returns (Class, suite_name) or (None, None)."""
         q = name.lower()
         for suite in self.suites:
             for cls in suite.classes:
                 if cls.name.lower() == q:
-                    return cls
-        return None
+                    return cls, suite.name
+        return None, None
 
-    def find_enumeration(self, name: str) -> Optional[Enumeration]:
-        """Find an enumeration by name across all suites (case-insensitive)."""
+    def find_enumeration(self, name: str) -> tuple:
+        """Find an enumeration by name across all suites (case-insensitive).
+        Returns (Enumeration, suite_name) or (None, None)."""
         q = name.lower()
         for suite in self.suites:
             for enum in suite.enumerations:
                 if enum.name.lower() == q:
-                    return enum
-        return None
+                    return enum, suite.name
+        return None, None
 
     def find_suite(self, name: str) -> Optional[Suite]:
         """Find a suite by name (case-insensitive)."""
