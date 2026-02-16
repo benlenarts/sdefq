@@ -1,10 +1,10 @@
-"""CLI entry point for sdefq. Run with: python -m sdefq"""
+"""CLI entry point for sdefq. Run with: python -m sdef"""
 
 import argparse
 import sys
 
-import sdefq
-from sdefq.formatter import (
+import sdef
+from sdef.formatter import (
     format_app_list,
     format_class,
     format_command,
@@ -44,7 +44,7 @@ def main():
     args = parser.parse_args()
 
     if args.list:
-        apps = sdefq.list_apps()
+        apps = sdef.list_apps()
         sys.stdout.write(format_app_list(apps))
         return
 
@@ -53,7 +53,7 @@ def main():
         sys.exit(1)
 
     try:
-        d = sdefq.load(args.app)
+        d = sdef.load(args.app)
     except FileNotFoundError as e:
         sys.stderr.write("Error: %s\n" % e)
         sys.exit(1)

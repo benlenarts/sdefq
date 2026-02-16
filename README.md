@@ -8,35 +8,37 @@ Built on the system `/usr/bin/sdef` tool. No external dependencies — Python 3.
 
 ```bash
 # List all scriptable apps
-python3 -m sdefq --list
+sdefq --list
 
 # App index — suites with command/class/enum counts
-python3 -m sdefq Safari
-python3 -m sdefq /Applications/Safari.app/
+sdefq Safari
+sdefq /Applications/Safari.app/
 
 # Suite detail — all commands, classes, enums
-python3 -m sdefq Safari "Safari suite"
+sdefq Safari "Safari suite"
 
 # Command detail — parameters, types, return value
-python3 -m sdefq Safari command "do JavaScript"
+sdefq Safari command "do JavaScript"
 
 # Class detail — properties, elements, responds-to
-python3 -m sdefq Safari class tab
+sdefq Safari class tab
 
 # Enumeration — all values
-python3 -m sdefq Keynote enum "export format"
+sdefq Keynote enum "export format"
 
 # Search across an app's entire dictionary
-python3 -m sdefq Safari --search JavaScript
+sdefq Safari --search JavaScript
 ```
+
+Run directly with `bin/sdefq` or `python3 -m sdef`.
 
 ## Python API
 
 ```python
-import sdefq
+import sdef
 
 # Load an app's dictionary
-d = sdefq.load("Safari")
+d = sdef.load("Safari")
 
 # Browse suites
 for suite in d.suites:
@@ -51,7 +53,7 @@ enum = d.find_enumeration("export format")
 results = d.search("JavaScript")
 
 # List scriptable apps
-apps = sdefq.list_apps()  # [(name, path), ...]
+apps = sdef.list_apps()  # [(name, path), ...]
 ```
 
 ## Models

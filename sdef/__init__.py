@@ -1,4 +1,4 @@
-"""sdefq — query macOS AppleScript dictionaries (SDEF)."""
+"""sdef — Python library for querying macOS AppleScript dictionaries (SDEF)."""
 
 from .models import (
     Class,
