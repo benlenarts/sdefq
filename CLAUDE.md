@@ -19,5 +19,5 @@ Python 3.9+ CLI and library for querying macOS AppleScript dictionaries (SDEF). 
 ```bash
 bin/sdefq Safari
 bin/sdefq Safari command "do JavaScript"
-bin/sdefq --skill > .claude/skills/sdefq/SKILL.md
+bin/sdefq --install-skill-into ~/.claude/skills
 ```
