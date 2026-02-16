@@ -1,6 +1,7 @@
 """CLI entry point for sdefq. Run with: python -m sdef"""
 
 import argparse
+import pkgutil
 import sys
 
 import sdef
@@ -28,6 +29,10 @@ def main():
         help="List all scriptable applications.",
     )
     parser.add_argument(
+        "--skill", action="store_true",
+        help="Print the Claude Code skill file to stdout.",
+    )
+    parser.add_argument(
         "app", nargs="?",
         help="App name (e.g. Safari) or path (/Applications/Safari.app/).",
     )
@@ -45,6 +50,11 @@ def main():
     )
 
     args = parser.parse_args()
+
+    if args.skill:
+        data = pkgutil.get_data("sdef", "skill.md")
+        sys.stdout.buffer.write(data)
+        return
 
     if args.list:
         apps = sdef.list_apps()
