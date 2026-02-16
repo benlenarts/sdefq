@@ -11,6 +11,7 @@ Python 3.9+ CLI and library for querying macOS AppleScript dictionaries (SDEF). 
   - `formatter.py` — models → human-readable text
   - `__main__.py` — CLI entry point (argparse)
   - `__init__.py` — public API: `load()`, `list_apps()`
+  - `skill.md` — Claude Code skill (printed by `--skill`)
 - `bin/sdefq` — executable CLI wrapper
 
 ## Run
@@ -18,4 +19,5 @@ Python 3.9+ CLI and library for querying macOS AppleScript dictionaries (SDEF). 
 ```bash
 bin/sdefq Safari
 bin/sdefq Safari command "do JavaScript"
+bin/sdefq --skill > .claude/skills/sdefq/SKILL.md
 ```
