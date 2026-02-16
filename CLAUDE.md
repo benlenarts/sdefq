@@ -4,16 +4,18 @@ Python 3.9+ CLI and library for querying macOS AppleScript dictionaries (SDEF). 
 
 ## Structure
 
-- `sdefq/models.py` — dataclasses (Dictionary, Suite, Command, Class, Enumeration, etc.)
-- `sdefq/parser.py` — XML → model objects
-- `sdefq/resolver.py` — app name → path, list scriptable apps
-- `sdefq/formatter.py` — models → human-readable text
-- `sdefq/__main__.py` — CLI (argparse)
-- `sdefq/__init__.py` — public API: `load()`, `list_apps()`
+- `sdef/` — library package (`import sdef`)
+  - `models.py` — dataclasses (Dictionary, Suite, Command, Class, Enumeration, etc.)
+  - `parser.py` — XML → model objects
+  - `resolver.py` — app name → path, list scriptable apps
+  - `formatter.py` — models → human-readable text
+  - `__main__.py` — CLI entry point (argparse)
+  - `__init__.py` — public API: `load()`, `list_apps()`
+- `bin/sdefq` — executable CLI wrapper
 
 ## Run
 
 ```bash
-python3 -m sdefq Safari
-python3 -m sdefq Safari command "do JavaScript"
+bin/sdefq Safari
+bin/sdefq Safari command "do JavaScript"
 ```
