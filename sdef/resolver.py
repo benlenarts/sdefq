@@ -45,10 +45,13 @@ def resolve_app(name_or_path: str) -> str:
 
 def get_sdef_xml(app_path: str) -> bytes:
     """Get raw SDEF XML for an app by calling /usr/bin/sdef."""
-    result = subprocess.run(
-        ["/usr/bin/sdef", app_path],
-        capture_output=True,
-    )
+    try:
+        result = subprocess.run(
+            ["/usr/bin/sdef", app_path],
+            capture_output=True,
+        )
+    except FileNotFoundError:
+        raise FileNotFoundError("/usr/bin/sdef not found — is this macOS?")
     if result.returncode != 0:
         stderr = result.stderr.decode("utf-8", errors="replace").strip()
         raise RuntimeError("sdef failed for %s: %s" % (app_path, stderr))
