@@ -47,7 +47,7 @@ def _parse_command(el: ET.Element) -> Command:
     if dp_el is not None:
         direct_parameter = Parameter(
             name="direct parameter",
-            type=dp_el.get("type", dp_el.get("description", "")),
+            type=dp_el.get("type", ""),
             description=dp_el.get("description", ""),
             optional=dp_el.get("optional", "no") == "yes",
         )
