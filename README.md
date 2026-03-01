@@ -54,10 +54,10 @@ d = sdef.load("Safari")
 for suite in d.suites:
     print(suite.name, len(suite.commands), "commands")
 
-# Look up specific items
-cmd = d.find_command("do JavaScript")
-cls = d.find_class("tab")
-enum = d.find_enumeration("export format")
+# Look up specific items — returns (object, suite_name) tuples
+cmd, suite = d.find_command("do JavaScript")
+cls, suite = d.find_class("tab")
+enum, suite = d.find_enumeration("export format")
 
 # Search
 results = d.search("JavaScript")
