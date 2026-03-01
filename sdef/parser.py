@@ -81,13 +81,19 @@ def _parse_command(el: ET.Element) -> Command:
     )
 
 
-def _parse_class(el: ET.Element) -> Class:
+def _parse_class_members(el: ET.Element) -> tuple:
+    """Parse properties, elements, and responds-to shared by class and class-extension."""
     properties = [_parse_property(p) for p in el.findall("property")]
     elements = [
         Element(type=e.get("type", ""), access=e.get("access", ""))
         for e in el.findall("element")
     ]
     responds_to = [r.get("command", "") for r in el.findall("responds-to")]
+    return properties, elements, responds_to
+
+
+def _parse_class(el: ET.Element) -> Class:
+    properties, elements, responds_to = _parse_class_members(el)
     return Class(
         name=el.get("name", ""),
         code=el.get("code", ""),
@@ -103,12 +109,7 @@ def _parse_class(el: ET.Element) -> Class:
 
 
 def _parse_class_extension(el: ET.Element) -> Class:
-    properties = [_parse_property(p) for p in el.findall("property")]
-    elements = [
-        Element(type=e.get("type", ""), access=e.get("access", ""))
-        for e in el.findall("element")
-    ]
-    responds_to = [r.get("command", "") for r in el.findall("responds-to")]
+    properties, elements, responds_to = _parse_class_members(el)
     extends = el.get("extends", "")
     return Class(
         name=extends,
