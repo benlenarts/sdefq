@@ -69,7 +69,7 @@ def list_scriptable_apps() -> List[Tuple[str, str]]:
     Returns list of (app_name, app_path) sorted by name.
     """
     apps = []  # type: List[Tuple[str, str]]
-    seen = set()  # type: set
+    seen = set()  # type: set[str]
 
     for app_dir in APP_DIRS:
         if not os.path.isdir(app_dir):
@@ -105,6 +105,4 @@ def _has_sdef(app_path: str) -> bool:
                     return True
         except OSError:
             pass
-    # Also check for aete-based scriptability via the sdef command
-    # (some apps use older formats). We skip this for speed in listing.
     return False
