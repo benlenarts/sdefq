@@ -18,7 +18,10 @@ from .models import (
 
 def parse_xml(xml_bytes: bytes, app_name: str = "", app_path: str = "") -> Dictionary:
     """Parse raw SDEF XML bytes into a Dictionary model."""
-    root = ET.fromstring(xml_bytes)
+    try:
+        root = ET.fromstring(xml_bytes)
+    except ET.ParseError as e:
+        raise ValueError("Malformed SDEF XML: %s" % e) from e
     suites = [_parse_suite(el) for el in root.findall("suite")]
     return Dictionary(app_name=app_name, app_path=app_path, suites=suites)
 

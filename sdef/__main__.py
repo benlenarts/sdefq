@@ -88,6 +88,9 @@ def main():
     except RuntimeError as e:
         sys.stderr.write("Error: %s\n" % e)
         sys.exit(1)
+    except ValueError as e:
+        sys.stderr.write("Error: %s\n" % e)
+        sys.exit(1)
 
     # Search mode
     if args.search:
