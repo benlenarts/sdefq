@@ -28,9 +28,6 @@ def resolve_app(name_or_path: str) -> str:
     # If it looks like a path (contains / or ends with .app)
     if "/" in name_or_path or name_or_path.endswith(".app"):
         path = name_or_path.rstrip("/")
-        if not path.endswith(".app"):
-            # Maybe they gave a directory containing an .app
-            path = path
         if os.path.isdir(path):
             return path
         raise FileNotFoundError("App not found: %s" % name_or_path)
