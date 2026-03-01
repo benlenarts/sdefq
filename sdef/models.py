@@ -81,35 +81,27 @@ class Dictionary:
     app_path: str
     suites: List[Suite] = field(default_factory=list)
 
-    def find_command(self, name: str) -> tuple:
-        """Find a command by name across all suites (case-insensitive).
-        Returns (Command, suite_name) or (None, None)."""
+    def _find_in_suites(self, name: str, attr: str) -> tuple:
+        """Find an item by name across all suites (case-insensitive).
+        Returns (item, suite_name) or (None, None)."""
         q = name.lower()
         for suite in self.suites:
-            for cmd in suite.commands:
-                if cmd.name.lower() == q:
-                    return cmd, suite.name
+            for item in getattr(suite, attr):
+                if item.name.lower() == q:
+                    return item, suite.name
         return None, None
+
+    def find_command(self, name: str) -> tuple:
+        """Find a command by name. Returns (Command, suite_name) or (None, None)."""
+        return self._find_in_suites(name, "commands")
 
     def find_class(self, name: str) -> tuple:
-        """Find a class by name across all suites (case-insensitive).
-        Returns (Class, suite_name) or (None, None)."""
-        q = name.lower()
-        for suite in self.suites:
-            for cls in suite.classes:
-                if cls.name.lower() == q:
-                    return cls, suite.name
-        return None, None
+        """Find a class by name. Returns (Class, suite_name) or (None, None)."""
+        return self._find_in_suites(name, "classes")
 
     def find_enumeration(self, name: str) -> tuple:
-        """Find an enumeration by name across all suites (case-insensitive).
-        Returns (Enumeration, suite_name) or (None, None)."""
-        q = name.lower()
-        for suite in self.suites:
-            for enum in suite.enumerations:
-                if enum.name.lower() == q:
-                    return enum, suite.name
-        return None, None
+        """Find an enumeration by name. Returns (Enumeration, suite_name) or (None, None)."""
+        return self._find_in_suites(name, "enumerations")
 
     def find_suite(self, name: str) -> Optional[Suite]:
         """Find a suite by name (case-insensitive)."""
