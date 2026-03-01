@@ -4,6 +4,15 @@ Query macOS AppleScript dictionaries (SDEF) from the command line or Python.
 
 Built on the system `/usr/bin/sdef` tool. No external dependencies — Python 3.9+ stdlib only.
 
+## Install
+
+```bash
+brew tap benlenarts/tap
+brew install sdefq
+```
+
+Or run directly from the repo with `bin/sdefq` or `python3 -m sdef`.
+
 ## CLI Usage
 
 ```bash
@@ -39,8 +48,6 @@ sdefq --install-skill-into ~/.claude/skills
 # Or print to stdout
 sdefq --skill
 ```
-
-Run directly with `bin/sdefq` or `python3 -m sdef`.
 
 ## Python API
 
