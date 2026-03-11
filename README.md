@@ -39,14 +39,16 @@ sdefq Keynote enum "export format"
 sdefq Safari --search JavaScript
 ```
 
-### Claude Code skill
+### Claude Code plugin
+
+sdefq includes a Claude Code plugin that teaches Claude how to query AppleScript dictionaries when writing automation scripts.
 
 ```bash
-# Install as a Claude Code skill
-sdefq --install-skill-into ~/.claude/skills
+# Load during development
+claude --plugin-dir /path/to/sdefq
 
-# Or print to stdout
-sdefq --skill
+# Install as a user plugin
+claude plugin install --plugin-dir /path/to/sdefq
 ```
 
 ## Python API

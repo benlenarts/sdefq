@@ -1,0 +1,7 @@
+{
+  "name": "sdefq",
+  "version": "1.0.0",
+  "description": "Query macOS AppleScript dictionaries (SDEF) for scriptable app automation",
+  "license": "ISC",
+  "repository": "https://github.com/benlenarts/sdefq"
+}

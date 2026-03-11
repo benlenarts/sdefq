@@ -1,5 +1,5 @@
 ---
-name: sdefq
+name: applescript-discovery
 description: Query macOS AppleScript dictionaries (SDEF) to look up commands, classes, properties, and enumerations for scriptable applications. Use when writing AppleScript or JXA automation, or when the user asks about app scripting capabilities.
 ---
 
