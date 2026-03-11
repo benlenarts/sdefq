@@ -5,20 +5,20 @@ description: Query macOS AppleScript dictionaries (SDEF) to look up commands, cl
 
 # sdefq — Query macOS AppleScript Dictionaries
 
-Use `sdefq` to discover commands, classes, properties, and enumerations available in scriptable macOS applications. Essential when writing AppleScript or JavaScript for Automation (JXA).
+Use `${CLAUDE_SKILL_DIR}/sdefq` to discover commands, classes, properties, and enumerations available in scriptable macOS applications. Essential when writing AppleScript or JavaScript for Automation (JXA).
 
 ## Usage
 
 ### List scriptable apps
 
 ```bash
-sdefq --list
+${CLAUDE_SKILL_DIR}/sdefq --list
 ```
 
 ### Show app overview
 
 ```bash
-sdefq Safari
+${CLAUDE_SKILL_DIR}/sdefq Safari
 ```
 
 Output:
@@ -36,7 +36,7 @@ Safari — 1 suite
 ### Look up a command
 
 ```bash
-sdefq Safari command "do JavaScript"
+${CLAUDE_SKILL_DIR}/sdefq Safari command "do JavaScript"
 ```
 
 Output:
@@ -54,7 +54,7 @@ command: do JavaScript (suite: Safari suite)
 ### Look up a class
 
 ```bash
-sdefq Safari class tab
+${CLAUDE_SKILL_DIR}/sdefq Safari class tab
 ```
 
 Output:
@@ -74,27 +74,27 @@ class: tab (suite: Safari suite)
 ### Look up an enumeration
 
 ```bash
-sdefq Keynote enum "export format"
+${CLAUDE_SKILL_DIR}/sdefq Keynote enum "export format"
 ```
 
 ### List all commands/classes/enums
 
 ```bash
-sdefq Safari command      # all commands
-sdefq Safari class        # all classes
-sdefq Safari enum         # all enumerations
+${CLAUDE_SKILL_DIR}/sdefq Safari command      # all commands
+${CLAUDE_SKILL_DIR}/sdefq Safari class        # all classes
+${CLAUDE_SKILL_DIR}/sdefq Safari enum         # all enumerations
 ```
 
 ### View a suite
 
 ```bash
-sdefq Safari "Safari suite"
+${CLAUDE_SKILL_DIR}/sdefq Safari "Safari suite"
 ```
 
 ### Search across the dictionary
 
 ```bash
-sdefq Safari --search JavaScript
+${CLAUDE_SKILL_DIR}/sdefq Safari --search JavaScript
 ```
 
 ## Tips
@@ -109,7 +109,7 @@ sdefq Safari --search JavaScript
 
 When helping write AppleScript/JXA for an app:
 
-1. `sdefq AppName` — see what's available
-2. `sdefq AppName command "name"` — get command signature
-3. `sdefq AppName class "name"` — get properties and elements
+1. `${CLAUDE_SKILL_DIR}/sdefq AppName` — see what's available
+2. `${CLAUDE_SKILL_DIR}/sdefq AppName command "name"` — get command signature
+3. `${CLAUDE_SKILL_DIR}/sdefq AppName class "name"` — get properties and elements
 4. Use the discovered types and parameters to write correct scripts
