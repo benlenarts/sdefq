@@ -6,7 +6,7 @@ Built on the system `/usr/bin/sdef` tool. No external dependencies — Python 3.
 
 ## Install
 
-### CLI
+### CLI via Homebrew
 
 ```bash
 brew tap benlenarts/tap
