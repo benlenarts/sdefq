@@ -6,12 +6,22 @@ Built on the system `/usr/bin/sdef` tool. No external dependencies — Python 3.
 
 ## Install
 
+### CLI
+
 ```bash
 brew tap benlenarts/tap
 brew install sdefq
 ```
 
 Or run directly from the repo with `bin/sdefq` or `python3 -m sdef`.
+
+### Claude Code plugin
+
+Teaches Claude how to query AppleScript dictionaries when writing automation scripts. No separate CLI installation needed — the plugin is self-contained.
+
+```bash
+claude plugin install --plugin-dir /path/to/sdefq
+```
 
 ## CLI Usage
 
@@ -37,18 +47,6 @@ sdefq Keynote enum "export format"
 
 # Search across an app's entire dictionary
 sdefq Safari --search JavaScript
-```
-
-### Claude Code plugin
-
-sdefq includes a Claude Code plugin that teaches Claude how to query AppleScript dictionaries when writing automation scripts. No separate tool installation is needed — the plugin is self-contained.
-
-```bash
-# Install as a user plugin
-claude plugin install --plugin-dir /path/to/sdefq
-
-# Or load during development
-claude --plugin-dir /path/to/sdefq
 ```
 
 ## Python API
