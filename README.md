@@ -41,14 +41,14 @@ sdefq Safari --search JavaScript
 
 ### Claude Code plugin
 
-sdefq includes a Claude Code plugin that teaches Claude how to query AppleScript dictionaries when writing automation scripts.
+sdefq includes a Claude Code plugin that teaches Claude how to query AppleScript dictionaries when writing automation scripts. No separate tool installation is needed — the plugin is self-contained.
 
 ```bash
-# Load during development
-claude --plugin-dir /path/to/sdefq
-
 # Install as a user plugin
 claude plugin install --plugin-dir /path/to/sdefq
+
+# Or load during development
+claude --plugin-dir /path/to/sdefq
 ```
 
 ## Python API
